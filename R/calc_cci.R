@@ -17,8 +17,7 @@
 #' @importFrom dplyr %>%
 #' @export
 calc_cci <- function(data) {
-    data <- sort_by_id_age(data)
-    data <- add_num_id_col(data)
+    data <- preprocess_data(data)
     grouped_data <- group_by_icd_ver(data)
 
     total_cci_score <- tibble::tibble()
@@ -29,19 +28,28 @@ calc_cci <- function(data) {
                                                 "primary_ICD",
                                                 map = get_comorb_icd_ver_str(icd_version),
                                                 assign0 = FALSE)
-
         cci_score <- comorbidity::score(current_res,
                                         weights = "charlson",
                                         assign0 = FALSE)
-        cci_score_tib <- tibble::tibble(ID = unique(current_data$ID),
+        # CAREFUL!!! score aparently sorts the individuals by their (numeric) names. 
+        cci_score_tib <- tibble::tibble(ID_num = sort(unique(current_data$ID_num)),
                                         score = cci_score)
         total_cci_score <- dplyr::bind_rows(total_cci_score, cci_score_tib)
     }
 
-    total_cci_score <- dplyr::group_by(total_cci_score, ID) %>%
+    total_cci_score <- dplyr::group_by(total_cci_score, ID_num) %>%
                     dplyr::summarise_all(sum)
 
+    total_cci_score <- add_map_col(total_cci_score,
+                                   dplyr::select(data, ID, ID_num),
+                                   "ID_num")                                   
     return(total_cci_score)
+}
+
+preprocess_data <- function(data) {
+    # data <- sort_by_id_age(data)
+    data <- add_num_id_col(data)
+    return(data)
 }
 
 get_current_data <- function(grouped_data, icd_version) {
