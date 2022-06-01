@@ -1,4 +1,4 @@
-Package: interveneCCI
+Package: ICCI
 Title: Calculates the Charlson Comorbidity Index on longitudinal data in INTERVENE Format
 Version: 0.0.1.0
 Authors@R: 

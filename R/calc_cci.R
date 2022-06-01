@@ -16,7 +16,9 @@
 #'
 #' @importFrom dplyr %>%
 #' @export
-calc_cci <- function(data) {
+calc_cci <- function(data,
+                     exp_start=0,
+                     exp_end=200) {
     data <- preprocess_data(data)
     grouped_data <- group_by_icd_ver(data)
 
@@ -46,7 +48,10 @@ calc_cci <- function(data) {
     return(total_cci_score)
 }
 
-preprocess_data <- function(data) {
+preprocess_data <- function(data,
+                            exp_start=0,
+                            exp_end=200) {
+    data <- dplyr::filter(data, Event_age >= exp_start & Event_age <= exp_end)
     # data <- sort_by_id_age(data)
     data <- add_num_id_col(data)
     return(data)

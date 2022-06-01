@@ -19,7 +19,6 @@ create_test_df_multi_icd_ver <- function(n_icd10=50,
                                          n_icd9=20,
                                          icd10_indv=c("FG0000001", "FG0000002", "FG0000004", "FG0000005","FG0000006"), 
                                          icd9_indv=c("FG0000005", "FG0000007", "FG0000002", "FG0000008", "FG0000009")) { 
-
     samples_icd10 <- create_test_df(icd10_indv, n_icd10, "ICD10_2011")
     samples_icd9 <- create_test_df(icd9_indv, n_icd9, "ICD9_2015")
     icd_versions <- c(rep("10", n_icd10), rep("9", n_icd9))
