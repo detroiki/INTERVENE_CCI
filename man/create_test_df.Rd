@@ -25,8 +25,8 @@ defaults is \code{ICD10_2011}.}
 to the records.}
 }
 \value{
-A tidy tibble with columns \code{ID}, \code{EVENT_AGE}, \code{PRIMARY_ICD},
-and \code{SECONDARY_ICD} and random ICD codes, as well as age at event.
+A tidy tibble with columns \code{ID}, \code{Event_age}, \code{primary_ICD},
+and \code{secondary_ICD} and random ICD codes, as well as age at event.
 }
 \description{
 For each entry the age at event is drawn from a uniform distribution.

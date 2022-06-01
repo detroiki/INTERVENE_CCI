@@ -24,8 +24,8 @@ The names of the individuals with ICD10 codes}
 The names of the individuals with ICD9 codes}
 }
 \value{
-A tibble with columns \code{ID}, \code{EVENT_AGE}, \code{PRIMARY_ICD},
-and \code{SECONDARY_ICD} and random ICD codes, as well as age at event.
+A tibble with columns \code{ID}, \code{Event_age}, \code{primary_ICD},
+and \code{secondary_ICD} and random ICD codes, as well as age at event.
 }
 \description{
 It is possible to create a mix of ICD-10 and ICD-9 codes to create

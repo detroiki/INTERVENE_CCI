@@ -10,8 +10,8 @@
 #'                   The names of the individuals with ICD10 codes
 #' @param icd9_indv A character vector.
 #'                   The names of the individuals with ICD9 codes
-#' @return A tibble with columns `ID`, `EVENT_AGE`, `PRIMARY_ICD`,
-#' and `SECONDARY_ICD` and random ICD codes, as well as age at event.
+#' @return A tibble with columns `ID`, `Event_age`, `primary_ICD`,
+#' and `secondary_ICD` and random ICD codes, as well as age at event.
 #'
 #' @importFrom dplyr %>%
 #' @export
@@ -24,5 +24,5 @@ create_test_df_multi_icd_ver <- function(n_icd10=50,
     samples_icd9 <- create_test_df(icd9_indv, n_icd9, "ICD9_2015")
     icd_versions <- c(rep("10", n_icd10), rep("9", n_icd9))
     samples <- dplyr::bind_rows(samples_icd10, samples_icd9) %>%
-                tibble::add_column(ICD_VERSION = icd_versions)
+                tibble::add_column(ICD_version = icd_versions)
 }

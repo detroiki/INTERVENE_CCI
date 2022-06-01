@@ -26,7 +26,7 @@ calc_cci <- function(data) {
         current_data <- data_num_id[grouped_data$idxs[[icd_version]], ]
         current_res <- comorbidity::comorbidity(current_data,
                                                 "ID_num",
-                                                "PRIMARY_ICD",
+                                                "primary_ICD",
                                                 map = get_comorb_icd_ver_str(icd_version),
                                                 assign0 = FALSE)
 

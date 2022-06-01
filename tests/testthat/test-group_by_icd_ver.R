@@ -1,5 +1,5 @@
 test_that("get_icd_ver_group_data works", {
-  test_data = tibble(ICD_VERSION=c("10", "9", "10", "10", "10CM", "9", "9CM", "9", "9", "9", "9", "10", "10CM", "10CM")) # nolint
+  test_data = tibble::tibble(ICD_version=c("10", "9", "10", "10", "10CM", "9", "9CM", "9", "9", "9", "9", "10", "10CM", "10CM")) # nolint
   test_res <- group_by_icd_ver(test_data)
 
   expected_group_keys <- c("10", "10CM", "9", "9CM")

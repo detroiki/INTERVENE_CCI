@@ -16,4 +16,4 @@ add_map_col <- function(data, map_tib, common_col) {
                                     dplyr::distinct(map_tib, .keep_all = TRUE),
                                     by = {{common_col}})
     return(data_joined)
-}
+} 

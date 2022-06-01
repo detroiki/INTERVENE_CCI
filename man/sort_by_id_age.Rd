@@ -2,16 +2,16 @@
 % Please edit documentation in R/sort_by_id_age.R
 \name{sort_by_id_age}
 \alias{sort_by_id_age}
-\title{Sorts a tidy data.frame by \code{ID} and \code{EVENT_AGE}.}
+\title{Sorts a tidy data.frame by \code{ID} and \code{Event_age}.}
 \usage{
 sort_by_id_age(data)
 }
 \arguments{
-\item{data}{A data.frame with at least column \code{ID}, and \code{EVENT_AGE}}
+\item{data}{A data.frame with at least column \code{ID}, and \code{Event_age}}
 }
 \value{
-The data.drame sorted first by \code{ID}, and then by \code{EVENT_AGE}.
+The data.drame sorted first by \code{ID}, and then by \code{Event_age}.
 }
 \description{
-Sorts a tidy data.frame by \code{ID} and \code{EVENT_AGE}.
+Sorts a tidy data.frame by \code{ID} and \code{Event_age}.
 }

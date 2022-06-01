@@ -1,6 +1,6 @@
 #' Groups the data according to the ICD-versions.
 #'
-#' @param data A tidy data.frame with at least column `ICD_VERSION`.
+#' @param data A tidy data.frame with at least column `ICD_version`.
 #'
 #' @return A list c(`groups`, `group_keys`, `group_idxs`):
 #'          - `groups` The grouped tibble.
@@ -14,10 +14,10 @@
 #' @export
 group_by_icd_ver <- function(data) {
     groups <- data %>%
-                dplyr::group_by(ICD_VERSION, .drop = FALSE)
+                dplyr::group_by(ICD_version, .drop = FALSE)
     group_keys <-  groups %>%
                     dplyr::group_keys() %>%
-                    dplyr::pull(ICD_VERSION)
+                    dplyr::pull(ICD_version)
     group_idxs <- groups %>%
                     dplyr::group_rows()
     names(group_idxs) <- group_keys

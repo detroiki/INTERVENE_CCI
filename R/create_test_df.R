@@ -11,8 +11,8 @@
 #'                    defaults is `ICD10_2011`.
 #' @param percent_sec_icd Percentage of secondary ICD-codes to add
 #'                        to the records.
-#' @return A tidy tibble with columns `ID`, `EVENT_AGE`, `PRIMARY_ICD`,
-#' and `SECONDARY_ICD` and random ICD codes, as well as age at event.
+#' @return A tidy tibble with columns `ID`, `Event_age`, `primary_ICD`,
+#' and `secondary_ICD` and random ICD codes, as well as age at event.
 #'
 #' @examples
 #' indv_ids = c("FG0000001","FG0000002","FG0000004","FG0000005","FG0000006")
@@ -34,8 +34,8 @@ create_test_df <- function(indv_ids,
                          rep(NA, n_samples - n_secondary_icd))
     tibble::tibble(
         ID = id_samples,
-        EVENT_AGE = age_samples,
-        PRIMARY_ICD = prim_icd_samples,
-        SECONDARY_ICD = sec_icd_samples
+        Event_age = age_samples,
+        primary_ICD = prim_icd_samples,
+        secondary_ICD = sec_icd_samples
     )
 }

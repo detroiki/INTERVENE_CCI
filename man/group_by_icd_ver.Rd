@@ -7,7 +7,7 @@
 group_by_icd_ver(data)
 }
 \arguments{
-\item{data}{A tidy data.frame with at least column \code{ICD_VERSION}.}
+\item{data}{A tidy data.frame with at least column \code{ICD_version}.}
 }
 \value{
 A list c(\code{groups}, \code{group_keys}, \code{group_idxs}):
