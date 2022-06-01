@@ -1,24 +1,41 @@
-create_df_for_single_ICD_ver <- function(indiv_IDs, N_samples, ICD_version) {
-    N_secondary_ICD = ceiling(N_samples / 20)
-    data.frame(
-    ID = sample(indiv_IDs, size = N_samples, replace = TRUE),
-    EVENT_AGE = round(runif(N_samples, min=0, max=100), 1),
-    PRIMARY_ICD = comorbidity::sample_diag(n = N_samples, version=ICD_version),
-    SECONDARY_ICD = c(comorbidity::sample_diag(n = N_secondary_ICD), 
-                        rep(NA, N_samples - N_secondary_ICD))
+#' Creates a tibble with random ICD-codes entries,
+#' using \code{\link[comorbidity]{sample_diag}}.
+#'
+#' For each entry the age at event is drawn from a uniform distribution.
+#' Also adds a certain percentage of secondary ICD-codes.
+#'
+#' @param indv_ids IDs of the individuals.
+#' @param n_samples Total number of samples to draw for the individuals
+#' @param icd_version The ICD version to draw the samples from.
+#'                    Can be either `ICD10_2009`, `ICD10_2011`, or `ICD9_2015`.
+#'                    defaults is `ICD10_2011`.
+#' @param percent_sec_icd Percentage of secondary ICD-codes to add
+#'                        to the records.
+#' @return A tidy tibble with columns `ID`, `EVENT_AGE`, `PRIMARY_ICD`,
+#' and `SECONDARY_ICD` and random ICD codes, as well as age at event.
+#'
+#' @examples
+#' indv_ids = c("FG0000001","FG0000002","FG0000004","FG0000005","FG0000006")
+#' create_test_df(indv_ids, 50, "ICD10_2011")
+#'
+#' @export
+create_test_df <- function(indv_ids,
+                           n_samples,
+                           icd_version="ICD10_2011",
+                           percent_sec_icd=0.05) {
+
+    n_secondary_icd <- ceiling(percent_sec_icd * n_samples)
+    id_samples <- sample(indv_ids, size = n_samples, replace = TRUE)
+    age_samples <- round(stats::runif(n_samples, min = 0, max = 100), 1)
+    prim_icd_samples <- comorbidity::sample_diag(n = n_samples,
+                                                 version = icd_version)
+    sec_icd_samples <- c(comorbidity::sample_diag(n = n_secondary_icd,
+                                                  version = icd_version),
+                         rep(NA, n_samples - n_secondary_icd))
+    tibble::tibble(
+        ID = id_samples,
+        EVENT_AGE = age_samples,
+        PRIMARY_ICD = prim_icd_samples,
+        SECONDARY_ICD = sec_icd_samples
     )
-}
-
-create_test_df <- function() {
-    N_ICD10 = 50
-    N_ICD9 = 20
-    ICD10_indv = c("FG0000001", "FG0000002", "FG0000004", "FG0000005", "FG0000006")
-    ICD9_indv = c("FG0000005", "FG0000007", "FG0000002", "FG0000008", "FG0000009")
-    samples_ICD10 = create_df_for_single_ICD_ver(ICD10_indv, N_ICD10, "ICD10_2011")
-    samples_ICD9 = create_df_for_single_ICD_ver(ICD9_indv, N_ICD9, "ICD9_2015")
-    icd_versions = c(rep("10", N_ICD10), rep("9", N_ICD9))
-    samples = dplyr::bind_rows(samples_ICD10, samples_ICD9) %>% 
-                tibble::add_column(ICD_VERSION = icd_versions)
-
-    sorted_samples = samples %>% dplyr::arrange(ID, EVENT_AGE)
 }
