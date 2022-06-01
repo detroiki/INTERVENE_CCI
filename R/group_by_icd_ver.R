@@ -22,7 +22,7 @@ group_by_icd_ver <- function(data) {
                     dplyr::group_rows()
     names(group_idxs) <- group_keys
 
-    return(list(groups = groups,
+    return(list(data = groups,
                 keys = group_keys,
                 idxs = group_idxs))
 }

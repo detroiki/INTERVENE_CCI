@@ -17,13 +17,13 @@
 #' @importFrom dplyr %>%
 #' @export
 calc_cci <- function(data) {
-    sorted_data <- sort_by_id_age(data)
-    data_num_id <- add_num_id_col(sorted_data)
-    grouped_data <- group_by_icd_ver(data_num_id)
+    data <- sort_by_id_age(data)
+    data <- add_num_id_col(data)
+    grouped_data <- group_by_icd_ver(data)
 
     total_cci_score <- tibble::tibble()
     for (icd_version in grouped_data$keys) {
-        current_data <- data_num_id[grouped_data$idxs[[icd_version]], ]
+        current_data <- get_current_data(grouped_data, icd_version)
         current_res <- comorbidity::comorbidity(current_data,
                                                 "ID_num",
                                                 "primary_ICD",
@@ -42,4 +42,16 @@ calc_cci <- function(data) {
                     dplyr::summarise_all(sum)
 
     return(total_cci_score)
+}
+
+get_current_data <- function(grouped_data, icd_version) {
+    tryCatch(
+        expr = {
+            return(grouped_data$data[grouped_data$idxs[[icd_version]], ])
+        },
+        error = function(e) {
+            message("Careful, if you have an index out of bounds error this might be because the ICD_version column is of type integer instead of character.")
+            print(e)
+        }
+    )
 }

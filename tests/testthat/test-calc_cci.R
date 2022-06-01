@@ -17,3 +17,11 @@ test_that("calc_cci works", {
   # peptic ulcers (pud), and hemiplegia (hp) -> score of 7
   expect_equal(dplyr::filter(cci_scores, ID == "FG0000002")$score, 7)
 })
+
+test_that("calc_cci ", {
+  set.seed(82312)
+  sample_data <- create_test_df_multi_icd_ver() 
+  sample_data$ICD_version <- as.integer(sample_data$ICD_version)
+
+  expect_error(calc_cci(sample_data))
+})
