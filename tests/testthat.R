@@ -8,4 +8,4 @@
 
 library(testthat)
 
-test_check("interveneCCI")
+test_check("ICCI")
