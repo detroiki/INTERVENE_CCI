@@ -2,21 +2,34 @@
 % Please edit documentation in R/add_map_col.R
 \name{add_map_col}
 \alias{add_map_col}
-\title{Adds a new column to a tidy data.frame from a map with a common column.}
+\title{Adds new column mapped to another column}
 \usage{
-add_map_col(data, map_tib, common_col)
+add_map_col(long_data, map_tib, common_col)
 }
 \arguments{
-\item{data}{A data.frame with at least column \code{common_col}}
+\item{long_data}{A data.frame with at least the column defined
+in variable \code{common_col}.}
 
-\item{map_tib}{A data.frame with two columns, one being \code{common_col},
-and the other being the new column to add.}
+\item{map_tib}{A data.frame with exactly two columns,
+the \code{common_col}, and the new column to add.}
 
-\item{common_col}{A string. The common column as basis of the mapping.}
+\item{common_col}{A string.
+The common column as basis of the mapping.}
 }
 \value{
-The data.frame with the new mapped column.
+The data.frame with the new mapped column added.
 }
 \description{
-Adds a new column to a tidy data.frame from a map with a common column.
+Adds a new column to a data.frame from a map with a common column.
+}
+\examples{
+long_data <- tibble::tibble(ID_num = c(3, 1), 
+                            something = c("test1", "test2"))
+map_tib <- tibble::tibble(ID = c("KT012", "KT0123", "KT012"), 
+                          ID_num = c(1, 3, 1))
+add_map_col(long_data, map_tib, common_col="ID_num")
+
+}
+\author{
+Kira E. Detrois
 }

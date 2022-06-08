@@ -2,8 +2,7 @@
 % Please edit documentation in R/create_test_df.R
 \name{create_test_df}
 \alias{create_test_df}
-\title{Creates a tibble with random ICD-codes entries,
-using \code{\link[comorbidity]{sample_diag}}.}
+\title{Creates a tibble with random ICD-codes entries}
 \usage{
 create_test_df(
   indv_ids,
@@ -13,27 +12,39 @@ create_test_df(
 )
 }
 \arguments{
-\item{indv_ids}{IDs of the individuals.}
+\item{indv_ids}{A string.
+IDs of the individuals.}
 
-\item{n_samples}{Total number of samples to draw for the individuals}
+\item{n_samples}{An integer.
+Total number of samples to draw for the individuals}
 
 \item{icd_version}{The ICD version to draw the samples from.
-Can be either \code{ICD10_2009}, \code{ICD10_2011}, or \code{ICD9_2015}.
-defaults is \code{ICD10_2011}.}
+Can be either \code{ICD10_2009}, \code{ICD10_2011}, or
+\code{ICD9_2015}. The default is \code{ICD10_2011}.}
 
 \item{percent_sec_icd}{Percentage of secondary ICD-codes to add
 to the records.}
 }
 \value{
-A tidy tibble with columns \code{ID}, \code{Event_age}, \code{primary_ICD},
-and \code{secondary_ICD} and random ICD codes, as well as age at event.
+A tibble with columns \code{ID}, \code{Event_age}, \code{primary_ICD},
+and \code{secondary_ICD}. Filled with random ICD codes, and age at event.
 }
 \description{
-For each entry the age at event is drawn from a uniform distribution.
-Also adds a certain percentage of secondary ICD-codes.
+Creates a tibble with random ICD-codes entries,
+using the function \code{\link[comorbidity]{sample_diag}}. The
+results are meant to mimic INTERVENE longitudinal files for
+testing.
+}
+\details{
+For each entry the age at event is drawn from a uniform
+distribution. The functions also adds a certain percentage of
+secondary ICD-codes.
 }
 \examples{
-indv_ids = c("FG0000001","FG0000002","FG0000004","FG0000005","FG0000006")
+indv_ids = c("KT001","KT002","KT004","KT005","KT006")
 create_test_df(indv_ids, 50, "ICD10_2011")
 
+}
+\author{
+Kira E. Detrois
 }

@@ -1,19 +1,26 @@
-#' Adds a column with numeric IDs to a tidy data.frame
+#' Adds a column with numeric IDs
 #'
-#' @param data A data.frame with at least column `ID`
+#' Adds a new column to the data.frame with numeric IDs which is 
+#' called `ID_num`. 
+#' 
+#' @param long_data A data.frame with at least column `ID`.
 #'
-#' @return data A data.frame with at least column `ID`, and `ID_num`
-#'
-#' @examples
-#' data <- create_test_df_multi_icd_ver()
-#' data_with_num_id <- add_num_id_col(data)
+#' @return A data.frame with at least columns `ID`, and `ID_num`.
 #'
 #' @importFrom dplyr %>%
 #' @export
-add_num_id_col <- function(data) {
-    id_num_map <- dplyr::select(data, ID) %>%
+#' 
+#' @examples
+#' long_data <- tibble::tibble(ID = c("KT011", "KT002", "KT011"), 
+#'                             something = c("t1", "t2", "t3"))
+#' add_num_id_col(long_data)
+#' 
+#' @author Kira E. Detrois
+add_num_id_col <- function(long_data) {
+    id_num_map <- dplyr::select(long_data, ID) %>%
                     dplyr::distinct(ID)
     id_num_map <- id_num_map %>%
                     tibble::add_column(ID_num = seq_len(nrow(id_num_map)))
-    add_map_col(data, id_num_map, "ID")
+    long_data <- add_map_col(long_data, id_num_map, "ID")
+    return(long_data)
 }

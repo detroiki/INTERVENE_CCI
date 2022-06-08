@@ -2,21 +2,26 @@
 % Please edit documentation in R/add_num_id_col.R
 \name{add_num_id_col}
 \alias{add_num_id_col}
-\title{Adds a column with numeric IDs to a tidy data.frame}
+\title{Adds a column with numeric IDs}
 \usage{
-add_num_id_col(data)
+add_num_id_col(long_data)
 }
 \arguments{
-\item{data}{A data.frame with at least column \code{ID}}
+\item{long_data}{A data.frame with at least column \code{ID}.}
 }
 \value{
-data A data.frame with at least column \code{ID}, and \code{ID_num}
+A data.frame with at least columns \code{ID}, and \code{ID_num}.
 }
 \description{
-Adds a column with numeric IDs to a tidy data.frame
+Adds a new column to the data.frame with numeric IDs which is
+called \code{ID_num}.
 }
 \examples{
-data <- create_test_df_multi_icd_ver()
-data_with_num_id <- add_num_id_col(data)
+long_data <- tibble::tibble(ID = c("KT011", "KT002", "KT011"), 
+                            something = c("t1", "t2", "t3"))
+add_num_id_col(long_data)
 
+}
+\author{
+Kira E. Detrois
 }
