@@ -7,6 +7,7 @@
   - Possible entries for the column `ICD_version` are "10", "10CM", "9", or "9CM". 
 
 ## Dependencies
+R packages:
 - assertthat
 - comorbidity
 - dplyr
