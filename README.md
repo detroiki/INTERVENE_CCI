@@ -12,3 +12,8 @@ R packages:
 - comorbidity
 - dplyr
 - tibble
+
+## Usage
+- Clone this Repo
+- Install as an R package
+- The main function is called `calc_cci`
