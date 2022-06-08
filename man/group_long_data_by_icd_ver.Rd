@@ -11,12 +11,15 @@ group_long_data_by_icd_ver(long_data)
 }
 \value{
 A list(\code{groups}, \code{group_keys}, \code{group_idxs}):
-1.\code{groups}: The grouped tibble.
-2.\code{group_keys} A list. The name of each group, so the
+\itemize{
+\item \code{groups}: The grouped tibble.
+\item \code{group_keys}: A list. The name of each group, so the
 ICD-versions present in the data.
-3. \code{group_idxs} A named list. The indices of the elements
-of each group in the original long_data.
-The names are the group names.
+\item \code{group_idxs}: A named list. The indices of the
+elements of each group in the original
+\code{long_data}. The names are the group
+names.
+}
 }
 \description{
 Groups the data.frame according to the ICD-versions, using

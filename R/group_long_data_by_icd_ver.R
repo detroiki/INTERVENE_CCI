@@ -6,12 +6,15 @@
 #' @param long_data A data.frame with at least column `ICD_version`.
 #'
 #' @return A list(`groups`, `group_keys`, `group_idxs`): 
-#'         1.`groups`: The grouped tibble. 
-#'         2.`group_keys` A list. The name of each group, so the 
-#'                        ICD-versions present in the data.
-#'         3. `group_idxs` A named list. The indices of the elements 
-#'                         of each group in the original long_data. 
-#'                         The names are the group names.
+#'         \itemize{
+#'          \item `groups`: The grouped tibble. 
+#'          \item `group_keys`: A list. The name of each group, so the 
+#'                              ICD-versions present in the data.
+#'          \item `group_idxs`: A named list. The indices of the 
+#'                              elements of each group in the original 
+#'                              `long_data`. The names are the group 
+#'                              names.
+#'         }
 #' @importFrom dplyr %>%
 #' @export
 group_long_data_by_icd_ver <- function(long_data) {
