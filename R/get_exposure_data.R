@@ -13,7 +13,7 @@
 #' @export
 #' 
 #' @author Kira E. Detrois
-get_exposed_indv <- function(long_data,
+get_exposure_data <- function(long_data,
                              exp_start=NA,
                              exp_end=NA) {
     if(!is.na(exp_start) | !is.na(exp_end)) {
